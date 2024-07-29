@@ -1,0 +1,24 @@
+.task-list-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .task-form-card,
+  .task-list-card {
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .task-list-card {
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+
+  .task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }

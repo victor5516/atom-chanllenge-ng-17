@@ -1,0 +1,21 @@
+<app-header></app-header>
+<div class="login-container">
+  <mat-card>
+    <mat-card-title>Inicio de Sesión</mat-card-title>
+    <mat-card-content>
+      <form (ngSubmit)="onLogin(loginForm)" #loginForm="ngForm">
+        <mat-form-field class="form-field" appearance="fill">
+          <mat-label>Correo electrónico</mat-label>
+          <input matInput [(ngModel)]="email" name="email" required email #emailInput="ngModel">
+          <mat-error *ngIf="emailInput.invalid && emailInput.touched">
+            <span *ngIf="emailInput.errors?.['required']">El correo electrónico es obligatorio.</span>
+            <span *ngIf="emailInput.errors?.['email']">Ingrese un correo electrónico válido.</span>
+          </mat-error>
+        </mat-form-field>
+        <div class="button-container">
+          <app-submit-button [text]="'Iniciar Sesión'" [loading]="loading" [disabled]="loginForm.invalid || false"></app-submit-button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

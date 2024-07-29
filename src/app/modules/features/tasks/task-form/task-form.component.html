@@ -1,0 +1,21 @@
+<div class="task-form">
+  <form (ngSubmit)="onAddTask(loginForm)" #loginForm="ngForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Título</mat-label>
+      <input matInput [(ngModel)]="title" name="title"
+      required title #tittleInput="ngModel">
+      <mat-error *ngIf="tittleInput.invalid && tittleInput.touched">
+        <span *ngIf="tittleInput.errors?.['required']">El título es obligatorio.</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput [(ngModel)]="description" name="description" #descriptionInput="ngModel" required description></textarea>
+      <mat-error *ngIf="descriptionInput.invalid && descriptionInput.touched">
+        <span *ngIf="descriptionInput.errors?.['required']">La descripción es obligatoria.</span>
+      </mat-error>
+    </mat-form-field>
+    <app-submit-button [text]="'Agregar Tarea'" [loading]="loading" [disabled]="loginForm.invalid || false"></app-submit-button>
+
+  </form>
+  </div>

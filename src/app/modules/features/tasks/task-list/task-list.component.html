@@ -1,0 +1,26 @@
+<app-header [showLogoutButton]="true"></app-header>
+<div class="task-list-wrapper">
+  <mat-card class="task-form-card">
+    <mat-card-content>
+      <h2>Agregar Tarea</h2>
+      <app-task-form (taskAdded)="onTaskAdded()"></app-task-form>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="task-list-card">
+    <mat-card-content>
+      <h2>Mi Lista de tareas</h2>
+      <div *ngIf="tasks.length === 0" class="empty-tasks-message">
+        No hay tareas por el momento.
+      </div>
+      <div class="task-list">
+        <app-task-item
+          *ngFor="let task of tasks"
+          [task]="task"
+          (taskUpdated)="onTaskUpdated($event)"
+          (taskDeleted)="onTaskDeleted($event)"
+        ></app-task-item>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

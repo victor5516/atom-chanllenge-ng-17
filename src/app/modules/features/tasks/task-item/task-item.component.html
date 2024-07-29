@@ -1,0 +1,36 @@
+<mat-card *ngIf="task">
+    <mat-card-header>
+      <mat-card-title>
+        <div class="title-container">
+          <mat-checkbox [(ngModel)]="task.completed" (change)="onTaskCompletionChanged()" class="task-checkbox"></mat-checkbox>
+          {{ task.title }}
+        </div>
+      </mat-card-title>
+      <mat-card-subtitle class="creation-date">
+        Fecha de creación: {{ task.createdAt| date: 'short' }}
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <ng-container *ngIf="!isEditing; else editingTemplate">
+        <p>{{ task.description }}</p>
+      </ng-container>
+
+      <ng-template #editingTemplate>
+        <mat-form-field>
+          <mat-label>Título</mat-label>
+          <input matInput [(ngModel)]="task.title">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Descripción</mat-label>
+          <input matInput [(ngModel)]="task.description">
+        </mat-form-field>
+      </ng-template>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="warn" *ngIf="!isEditing" (click)="onDeleteTask()">Eliminar</button>
+      <button mat-raised-button color="primary" *ngIf="!isEditing" (click)="startEditing()">Editar</button>
+      <button mat-raised-button color="primary" *ngIf="isEditing" (click)="saveChanges()">Guardar</button>
+      <button mat-raised-button color="warn" *ngIf="isEditing" (click)="cancelEditing()">Cancelar</button>
+    </mat-card-actions>
+  </mat-card>
